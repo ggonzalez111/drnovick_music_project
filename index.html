@@ -1,0 +1,24 @@
+<!DOCTYPE html> <!-- document declaration  -->
+<html>
+<link rel="stylesheet" href="style.css">
+
+<body>
+    <input type="range" min="1" max="10" value="5" id="beepboop" class="slider" />
+    <p id="volLevel"></p>
+
+    <script>
+        //first get the slider 
+        var slider = document.getElementById("beepboop");
+        //get the slider value
+        var volumeLevel = slider.value;
+        //show the slider value 
+        document.getElementById("volLevel").innerHTML = volumeLevel;
+        //write it to trigger new print every time the slider volume level change
+        slider.oninput = function () {
+            document.getElementById("volLevel").innerHTML = this.value;
+        }
+    </script>
+
+</body>
+
+</html>
