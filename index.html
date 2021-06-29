@@ -2,21 +2,61 @@
 <html>
 <link rel="stylesheet" href="style.css">
 
+
 <body>
+
+    <div class="container">
+        <div class="app">
+            <div class="pause active">
+                <div class="line line_1"></div>
+                <div class="line line_2"></div>
+            </div>
+            <div class="play">
+                <div class="line line_1"></div>
+                <div class="line line_2"></div>
+                <div class="line line_3"></div>
+            </div>
+        </div>
+    </div>
+
     <input type="range" min="1" max="10" value="5" id="beepboop" class="slider" />
     <p id="volLevel"></p>
 
     <script>
-        //first get the slider 
-        var slider = document.getElementById("beepboop");
+        var play = document.querySelector('.play');
+        var pause = document.querySelector('.pause');
+        var btn = document.querySelector('.app');
+
+        btn.addEventListener('click', () => {
+            if (play.classList.contains('active')) {
+                play.classList.remove('active');
+                pause.classList.add('active');
+            }
+            else {
+                pause.classList.remove('active')
+                play.classList.add('active')
+            }
+        })
+        //first get the slider
+        //var slider = document.getElementById("beepboop");
         //get the slider value
-        var volumeLevel = slider.value;
-        //show the slider value 
-        document.getElementById("volLevel").innerHTML = volumeLevel;
+        //var volumeLevel = slider.value;
+        //show the slider value
+        //document.getElementById("volLevel").innerHTML = volumeLevel;
         //write it to trigger new print every time the slider volume level change
-        slider.oninput = function () {
-            document.getElementById("volLevel").innerHTML = this.value;
-        }
+        //slider.oninput = function () {
+        //document.getElementById("volLevel").innerHTML = this.value;
+        //}
+
+        $(document).ready(function () {
+            var btn = $(".button");
+            btn.click(function () {
+                btn.toggleClass("paused");
+                return false;
+            });
+        });
+
+
     </script>
 
 </body>
