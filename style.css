@@ -66,6 +66,7 @@
     height: 80px;
     position: relative;
     border-radius: 50%;
+    overflow: hidden;
   }
 
   .pause, .play {
@@ -96,21 +97,16 @@
   .play .line_3{
     height: 56%;
     left: 60%;
-    transform: rotate(55deg) translateY(-128px) translateX(16);
+    transform: rotate(55deg) translateY(-128px) translateX(16px);
+    transition-delay: 100ms;
   }
-
-
-
-
-
-
   .play.active .line{
     height: 62%;
     margin: 20% 0;
   }
   .play.active .line_1{
     left: 28%;
-    transform: translate(-2px);
+    top: -3px;
   }
   .play.active .line_2{
     height: 56%;
@@ -128,7 +124,7 @@
   }
   .pause .line_2{
     margin: 100% -16%;
-    right 45%;
+    right: 45%;
     transition-delay: 200ms;
   }
   .pause.active.line_1{
