@@ -6,8 +6,6 @@
 <body>
     <h1 style="color:white">INTERACTIVE MUSIC! </h1>
 
-    <button type="button">Connect!</button>
-
     <audio id="audioFile">
         <source src="https://khaalipaper.com/blog/shree-hanuman-chalisa.ogg" type="audio/ogg">
         <source src="https://khaalipaper.com/blog/shree-hanuman-chalisa.mp3" type="audio/mpeg">
@@ -17,6 +15,7 @@
 
     <button onclick="playAudio()" type="button">Play Audio</button>
     <button onclick="pauseAudio()" type="button">Pause Audio</button>
+    <button onClick="connect()" type="button">Connect!</button>
 
     <script>
         var x = document.getElementById("myAudio");
@@ -27,6 +26,37 @@
             x.pause();
         }
     </script>
+    <script>
+        function connect() {
+            if ('geolocation' in navigator) {
+                console.log('geolocation available');
+                navigator.geolocation.getCurrentPosition(async position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    document.getElementById('latitude').textContent = lat;
+                    document.getElementById('longitude').textContent = lon;
+
+                    const data = { lat, lon };
+                    const options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    };
+                    const response = await fetch('/', options);
+                    const json = await response.json();
+                    console.log(json);
+                });
+            } else {
+                console.log('geolocation not available');
+            }
+        }
+    </script>
+    <p style="color:white">
+        latitude: <span id="latitude"></span></br>
+        longitude: <span id="longitude"></span>
+    </p>
 
 
     <link rel="stylesheet"
@@ -49,6 +79,7 @@
         }
 
         #holderion {
+            display: inline-block;
             padding: 10px 20px;
             width: 200px;
             background: rgba(41, 38, 68, 0.3);
@@ -57,6 +88,7 @@
         }
 
         #holderion2 {
+            display: inline-block;
             padding: 10px 20px;
             width: 200px;
             background: rgba(41, 38, 68, 0.3);
@@ -173,49 +205,54 @@
         }
 
         #greybox {
+            display: inline-block;
             background-color: grey;
-            height: 15px;
+            height: 100px;
             width: 15px;
         }
 
         #yellowbox {
+            display: inline-block;
             background-color: yellow;
-            height: 15px;
+            height: 100px;
             width: 15px;
         }
 
         #bluebox {
+            display: inline-block;
             background-color: blue;
-            height: 15px;
+            height: 100px;
             width: 15px;
         }
 
         #orangebox {
-            background-color: orange;
-            height: 15px;
+            display: inline-block;
+            background-color: #FF4500;
+            height: 100px;
             width: 15px;
         }
 
         .
     </style>
     <!-- Work for DecomDesign -->
+    <div id="greybox"></div>
 
     <div id="holderion">
-        <div id="greybox"></div>
         <div id="uislider"></div>
         <div class="color"></div>
-        <div id="yellowbox"></div>
         <input type="text" id="idnumber" display: none;">
     </div>
+    <div id="yellowbox"></div>
+
+    <div id="bluebox"></div>
 
     <div id="holderion2">
-
-        <div id="bluebox"></div>
         <div id="uislider2"></div>
         <div class="color2"></div>
-        <div id="orangebox"></div>
         <input type="text2" id="idnumber2" display: none;">
     </div>
+    <div id="orangebox"></div>
+
 
 
 
